@@ -2,28 +2,32 @@ import api from '../api.js';
 
 export default {
   template: `
-    <section>
-      <h2>Gerenciar Jogos</h2>
+  <section>
+    <h2>Gerenciar Jogos</h2>
 
-      <input v-model="nome" placeholder="Nome do jogo">
-      <input v-model="genero" placeholder="Gênero">
-      <input v-model.number="anoLancamento" placeholder="Ano de lançamento" type="number">
-      <input v-model="tipoMidia" placeholder="Tipo de mídia (CD/Cartucho)">
-      <input v-model="urlCapa" placeholder="URL da capa">
-      <input v-model.number="plataformaId" placeholder="ID do console" type="number">
+    <input v-model="nome" placeholder="Nome do jogo">
+    <input v-model="genero" placeholder="Gênero">
+    <input v-model.number="anoLancamento" placeholder="Ano de lançamento" type="number">
+    <input v-model="tipoMidia" placeholder="Tipo de mídia (CD/Cartucho)">
+    <input v-model="urlCapa" placeholder="URL da capa">
+    <input v-model.number="plataformaId" placeholder="ID do console" type="number">
 
+    <div class="button-container">
       <button v-if="!editando" @click="criarJogo">Criar Jogo</button>
       <button v-else @click="salvarEdicao">Salvar Alterações</button>
+    </div>
 
-      <ul>
-        <li v-for="jogo in jogos" :key="jogo.id">
-          {{ jogo.nome }} - {{ jogo.genero }} ({{ jogo.anoLancamento }})
+    <ul>
+      <li v-for="jogo in jogos" :key="jogo.id">
+        {{ jogo.nome }} - {{ jogo.genero }} ({{ jogo.anoLancamento }})
+        <div>
           <button @click="editarJogo(jogo)">Editar</button>
           <button @click="deletarJogo(jogo.id)">Excluir</button>
-        </li>
-      </ul>
-    </section>
-  `,
+        </div>
+      </li>
+    </ul>
+  </section>
+`,
 
   data() {
     return {

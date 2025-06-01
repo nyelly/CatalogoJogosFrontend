@@ -1,25 +1,29 @@
 import api from '../api.js';
 
 export default {
-  template: `
-    <section>
-      <h2>Gerenciar Consoles</h2>
+ template: `
+  <section>
+    <h2>Gerenciar Consoles</h2>
 
-      <input v-model="modelo" placeholder="Modelo do console">
-      <input v-model.number="ano" placeholder="Ano de lançamento" type="number">
-      
+    <input v-model="modelo" placeholder="Modelo do console">
+    <input v-model.number="ano" placeholder="Ano de lançamento" type="number">
+
+    <div class="button-container">
       <button v-if="!editando" @click="criarConsole">Criar Console</button>
       <button v-else @click="salvarEdicao">Salvar Alterações</button>
+    </div>
 
-      <ul>
-        <li v-for="console in consoles" :key="console.id">
-          {{ console.modelo }} ({{ console.ano }})
+    <ul>
+      <li v-for="console in consoles" :key="console.id">
+        {{ console.modelo }} ({{ console.ano }})
+        <div>
           <button @click="editarConsole(console)">Editar</button>
           <button @click="deletarConsole(console.id)">Excluir</button>
-        </li>
-      </ul>
-    </section>
-  `,
+        </div>
+      </li>
+    </ul>
+  </section>
+`,
 
   data() {
     return {
